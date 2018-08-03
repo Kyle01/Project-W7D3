@@ -1,20 +1,18 @@
 import { RECEIVE_ALL_POKEMON, RECEIVE_POKEMON } from '../actions/pokemon_actions';
 import merge from 'lodash/merge';
 
-const pokemonReducer = (state = {}, action) => {
+const itemsReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = {};
 
   switch(action.type){
-    case RECEIVE_ALL_POKEMON:
-      return merge(nextState, state, action.pokemon);
     case RECEIVE_POKEMON:
       merge(nextState, state);
-      nextState[action.pokemon.pokemon.id] = action.pokemon.pokemon;
+      nextState[action.pokemon.item] = action.pokemon.items;
       return nextState;
     default:
       return state;
   }
 };
 
-export default pokemonReducer;
+export default itemsReducer;
